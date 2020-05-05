@@ -1,0 +1,69 @@
+{
+  "name": "color-tap",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Next App with Express API",
+  "main": "index.js",
+  "author": "Brandon Patterson",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "lint": "eslint .",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+    "format": "npm run prettier -- --write",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "next": "^9.3.6",
+    "nodemailer": "^6.4.6",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.0.3",
+    "pg-hstore": "^2.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sequelize": "^5.21.6",
+    "sequelize-cli": "^5.5.1",
+    "uuid": "^8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "husky": "^4.2.3",
+    "jest": "^25.2.7",
+    "lint-staged": "^10.1.2",
+    "prettier": "^2.0.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/setup",
+      "<rootDir>/client"
+    ]
+  },
+  "lint-staged": {
+    "*.+(js)": [
+      "npm run lint"
+    ],
+    "**/**/*.+(js)": [
+      "npm run format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && lint-staged"
+    }
+  }
+}
