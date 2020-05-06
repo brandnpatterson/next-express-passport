@@ -1,8 +1,8 @@
 {
-  "name": "color-tap",
+  "name": "next-express-passport",
   "private": true,
   "version": "1.0.0",
-  "description": "Next App with Express API",
+  "description": "Next App with login using Express and Passport",
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {

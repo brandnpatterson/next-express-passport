@@ -1,3 +1,3 @@
-# color-tap
+# next-express-passport
 
-Next App with Express API
+Next App with login using Express and Passport
