@@ -1,8 +1,14 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { useState } from 'react';
 
-function Signup() {
+function Signup({ user }) {
+  useEffect(() => {
+    if (user) {
+      Router.push('/');
+    }
+  }, [user]);
+
   const [errors, setErrors] = useState(null);
   const [formData, setFormData] = useState({
     email: '',
@@ -31,7 +37,7 @@ function Signup() {
       errors.push({ message: 'Password must be at least six characters' });
     }
 
-    if (errors.length) {
+    if (errors.length > 0) {
       return setErrors(errors);
     }
 
@@ -48,10 +54,10 @@ function Signup() {
         const errors = await res.json();
 
         setErrors(errors);
-      } else if (res.status === 200) {
+      } else if (res.ok) {
         setErrors(null);
 
-        Router.push('/login');
+        Router.push('/check-email');
       }
     } catch (err) {
       console.log(err);

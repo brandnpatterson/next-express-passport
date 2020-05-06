@@ -1,37 +1,39 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { useState } from 'react';
 
-function Login() {
+function Login({ login, user }) {
+  useEffect(() => {
+    if (user) {
+      Router.push('/');
+    }
+  }, [user]);
+
   const [errors, setErrors] = useState(null);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-  async function onSubmit(e) {
+  function onSubmit(e) {
     e.preventDefault();
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+    let errors = [];
 
-      if (res.status === 400) {
-        const { error } = await res.json();
-
-        return setErrors(error);
-      }
-
-      Router.push('/');
-      setErrors(false);
-    } catch (err) {
-      console.log(err);
+    if (formData.email.length === 0 || formData.password.length === 0) {
+      errors.push({ message: 'All fields are required' });
     }
+
+    if (formData.password.length < 6) {
+      errors.push({ message: 'Password must be at least six characters' });
+    }
+
+    if (errors.length > 0) {
+      return setErrors(errors);
+    }
+
+    setErrors(null);
+    login(formData);
   }
 
   function onChange(e) {
@@ -68,7 +70,8 @@ function Login() {
             <a>Signup</a>
           </Link>
         </div>
-        {errors && errors.map((error, index) => <div key={index}>{error}</div>)}
+        {errors &&
+          errors.map((error, index) => <div key={index}>{error.message}</div>)}
       </form>
     </div>
   );

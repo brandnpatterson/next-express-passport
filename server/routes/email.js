@@ -14,7 +14,7 @@ router.get('/confirm/:token', async (req, res) => {
 
     User.update({ confirmed: true }, { where: { id } });
 
-    res.json({ message: 'Thank you for confirming your email' });
+    res.redirect('/login');
   } catch (err) {
     res.json({ message: 'Invalid token. Please try again' });
   }

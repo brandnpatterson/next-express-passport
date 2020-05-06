@@ -6,33 +6,39 @@ const transporter = require('../config/nodemailer');
 const signJwToken = require('../helpers/signJwToken');
 const { User } = require('../models');
 
-// Logged In User
-router.get('/success', (req, res) => {
-  if (!req.user) {
-    return res.json({ message: 'Please log in' });
-  }
-
-  res.json({ message: req.user.email });
-});
-
 // Login
-router.post('/login', (req, res, next) => {
+router.post(
+  '/login',
   passport.authenticate('local', {
-    successRedirect: '/api/auth/success',
+    successRedirect: '/api/auth/login-success',
     failureRedirect: '/api/auth/messages',
     failureFlash: true
-  })(req, res, next);
+  })
+);
+
+// Login Success
+router.get('/login-success', (req, res) => {
+  if (!req.user) {
+    return res
+      .status(400)
+      .json({ user: 'An error has occurred. Please try to log in again' });
+  }
+
+  req.session.userId = req.user.id;
+
+  res.json({ user: req.user });
+});
+
+// Login Failure
+router.get('/messages', (req, res) => {
+  res.json(req.flash());
 });
 
 // Logout
 router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/api/auth/messages');
-});
-
-// Flash Messages
-router.get('/messages', (req, res) => {
-  res.status(400).json(req.flash());
+  req.session.destroy(() => {
+    res.redirect('/api/auth/messages');
+  });
 });
 
 // Signup

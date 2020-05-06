@@ -7,6 +7,7 @@
   "author": "Brandon Patterson",
   "scripts": {
     "start": "node .",
+    "build": "next build",
     "dev": "nodemon .",
     "lint": "eslint .",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
@@ -17,10 +18,12 @@
     "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "connect-flash": "^0.1.1",
+    "connect-session-sequelize": "^6.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "isomorphic-unfetch": "^3.0.0",
+    "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.3.6",
     "nodemailer": "^6.4.6",
@@ -33,6 +36,7 @@
     "react-dom": "^16.13.1",
     "sequelize": "^5.21.6",
     "sequelize-cli": "^5.5.1",
+    "styled-components": "^5.1.0",
     "uuid": "^8.0.0"
   },
   "devDependencies": {
