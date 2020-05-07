@@ -57,8 +57,8 @@ class MyApp extends App {
     }
   };
 
-  logout = async () => {
-    await fetch('/api/auth/logout');
+  logout = () => {
+    fetch('/api/auth/logout');
 
     this.setState({ user: null });
     Cookies.remove('is_loggedin');

@@ -15,7 +15,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^6.1.1",
@@ -40,8 +39,12 @@
     "uuid": "^8.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.2.3",
     "jest": "^25.2.7",
     "lint-staged": "^10.1.2",
