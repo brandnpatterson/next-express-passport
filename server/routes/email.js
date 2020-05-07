@@ -27,7 +27,7 @@ router.post('/forgot', async (req, res) => {
   const { email } = req.body;
   const token = uuidv1();
   const message = 'Click here to reset your password:';
-  const url = `http://localhost:3000/reset/${token}`;
+  const url = `${process.env.HOST}/reset/${token}`;
 
   try {
     const user = await User.findOne({ where: { email } });

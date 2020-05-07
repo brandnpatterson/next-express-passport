@@ -86,7 +86,7 @@ router.post('/signup', async (req, res) => {
 
     signJwToken(existingUser.id, (err, emailToken) => {
       const message = 'Please confirm your email:';
-      const url = `http://localhost:3000/api/email/confirm/${emailToken}`;
+      const url = `${process.env.HOST}/api/email/confirm/${emailToken}`;
 
       const msg = {
         to: email,
