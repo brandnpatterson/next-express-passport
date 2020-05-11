@@ -70,6 +70,11 @@ function Login({ login, user }) {
             <a>Signup</a>
           </Link>
         </div>
+        <div>
+          <Link href="/forgot">
+            <a>Forgot your password?</a>
+          </Link>
+        </div>
         {errors &&
           errors.map((error, index) => <div key={index}>{error.message}</div>)}
       </form>
